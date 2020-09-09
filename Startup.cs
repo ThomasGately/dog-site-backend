@@ -27,7 +27,13 @@ namespace WebApi
             services.AddCors();
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(config =>
+            {
+                 //some swagger configuration code.
+
+                //use fully qualified object names
+                config.CustomSchemaIds(x => x.FullName);
+            });
 
             // configure strongly typed settings object
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));

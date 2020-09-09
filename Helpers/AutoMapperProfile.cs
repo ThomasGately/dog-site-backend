@@ -1,6 +1,7 @@
 using AutoMapper;
 using WebApi.Entities;
 using WebApi.Models.Accounts;
+using WebApi.Models.Dogs;
 
 namespace WebApi.Helpers
 {
@@ -9,15 +10,15 @@ namespace WebApi.Helpers
         // mappings between model and entity objects
         public AutoMapperProfile()
         {
-            CreateMap<Account, AccountResponse>();
+            CreateMap<Account, WebApi.Models.Accounts.AccountResponse>();
 
-            CreateMap<Account, AuthenticateResponse>();
+            CreateMap<Account, WebApi.Models.Accounts.AuthenticateResponse>();
 
-            CreateMap<RegisterRequest, Account>();
+            CreateMap<WebApi.Models.Accounts.RegisterRequest, Account>();
 
-            CreateMap<CreateRequest, Account>();
+            CreateMap<WebApi.Models.Accounts.CreateRequest, Account>();
 
-            CreateMap<UpdateRequest, Account>()
+            CreateMap<WebApi.Models.Accounts.UpdateRequest, Account>()
                 .ForAllMembers(x => x.Condition(
                     (src, dest, prop) =>
                     {
@@ -31,6 +32,16 @@ namespace WebApi.Helpers
                         return true;
                     }
                 ));
+
+            /*
+            CreateMap<Dog, WebApi.Models.Dogs.DogResponse>().AfterMap(src, opt => {});
+                .ForAllMembers(x => x.Condition(
+                    (src, dest, prop) =>
+                    {
+
+                    }
+                ));
+            */
         }
     }
 }
